@@ -1,0 +1,11 @@
+@import url(./common.css);
+@import url(./fullpage.css);
+.index_wrap{
+	width:100%;
+	display: flex;
+
+}
+.section1{
+		height:100%;
+		background-image:url('../img/bg1.png') ;
+}
