@@ -28,6 +28,6 @@
     "webpack": "^2.3.1",
     "webpack-dev-server": "^2.4.2",
     "cz-conventional-changelog": "^2.0.0",
-    "validate-commit-msg": "^2.11.2",
+    "validate-commit-msg": "^2.11.2"
   }
 }
