@@ -2,16 +2,21 @@
 (function(){
 	require('../css/index.css');
 	var bg = require('./bg.js');
-	var plane =require('./plane.js')
+	var plane = require('./plane.js');
+	var built = require('./built.js');
+	var enemyPlanes = require('./enemyPlanes.js');
+
 	bg.setInter();//整体背景；
 	plane.init();
-	var myflane = {
-			init: function () {
-				console.log(1)
-			}
-	}
+	built.init(plane,200,enemyPlanes);
+	enemyPlanes.init();
 
 
 
-
+	$(window).resize(function () {
+		bg.setInter();//整体背景；
+		plane.init();
+		built.init(plane,100,enemyPlanes);
+		enemyPlanes.init();
+	})
 })()

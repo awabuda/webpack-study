@@ -1,16 +1,53 @@
 @import url(./common.css);
+.wrap,.built,.enemy1,.enemy2,.enemy3{
+	background-size: 100% 100%;
+	border:none;
+	position: absolute;
+}
 .wrap{
-	width:100%;
+	width:600px;
 	height:100%;
-	background: url(../img/bg.jpg) repeat-y;
+	margin: 0 auto;
+	background-image:  url(../img/bg.jpg);
+	background-repeat: repeat-y;
 	position: relative;
+
 }
 .float{
 	width:98px;
 	height:122px;
 	background: url(../img/me.png) no-repeat;
 	position: absolute;
-	left:50%;
-	bottom: 0;
-	margin-left: -49px;
+}
+.built{
+	position: absolute;
+	width:6px;
+	height:16px;
+	background: url(../img/bullet.png) no-repeat;
+}
+
+.enemy1{
+	left:0;
+	top:0;
+	width:59px;
+	height:36px;
+	background: url(../img/plane1.png) no-repeat;
+}
+.enemy2{
+	width:70px;
+	height:92px;
+	background: url(../img/plane2.png) no-repeat;
+}
+.enemy3{
+	width:165px;
+	height:256px ;
+	background: url(../img/plane3.png) no-repeat;
+}
+.scalewrap{
+	width:100px;
+	height:50px;
+	background-color: red;
+	position: absolute;
+	left:0;
+	top:0;
 }

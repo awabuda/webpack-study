@@ -6,16 +6,21 @@ function bgEvent () {
 }
 bgEvent.prototype = {
   init : function () {
+
     this.positionY +=5;
     //console.log(this.positionY)
     this.ele.css('background-Position','0px ' + this.positionY +'px');
   },
   setInter: function (){
     var that = this;
-      setInterval(function(){
+      this.destory();
+      that.time = setInterval(function(){
         that.init()
       },that.timer)
-  }
+  },
+  destory: function (){
+    clearInterval(this.time)
+  }  
 }
 var bg = new bgEvent();
 module.exports = bg;
