@@ -84,7 +84,7 @@ built.prototype = {
             var maxLeft = parseInt($(dj).css('left'))+$(dj).width();
             //console.log("竖向"+(parseInt($(item).css('bottom')) + $('item').height() +parseInt($(dj).css('top'))+ $(dj).height() >=$('body').height()));
 
-          if ((parseInt($(item).css('bottom')) + $('item').height() +parseInt($(dj).css('top'))+ $(dj).height() >=$('body').height()) && parseInt($(item).css('left'))>= minLeft && parseInt($(item).css('left'))<= maxLeft){
+          if ((parseInt($(item).css('bottom')) + $(item).height() +parseInt($(dj).css('top'))+ $(dj).height() >=$('body').height()) && parseInt($(item).css('left'))>= minLeft && parseInt($(item).css('left'))<= maxLeft){
 
             $(item).remove();
             //delete that.obj.built[$(item).data('id')]
