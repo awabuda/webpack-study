@@ -16,13 +16,14 @@ module.exports = {
 	},
 	module: {//处理是需要加载的依赖
 	    loaders: [
+        { test: /\.js$/, loader: 'babel-loader', //此处不能用use，不知道为啥
+			    exclude: /node_modules/ //需要排除的目录
+        },
 		    {test:/\.scss$/, loader: 'css-loader!sass-loader'},
 		    {test: /\.css$/, loader:  ExtractTextPlugin.extract({loader: 'css-loader!postcss-loader?importLoaders=1'}) },
 
-		   	{ test: /\.(png|jpg)$/, loader: 'url-loader?limit=25000&name=/img/[hash:8].[name].[ext]'},
-		   	{ test: /\.js$/, loader: 'babel-loader', //此处不能用use，不知道为啥
-			    exclude: /node_modules/ //需要排除的目录
-			}
+		   	{ test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=1&name=/img/[name].[ext]'}
+
 	    ]
 	},
 	plugins:[//webpack强大的插件

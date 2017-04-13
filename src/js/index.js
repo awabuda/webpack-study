@@ -8,8 +8,8 @@
 
 	bg.setInter();//整体背景；
 	plane.init();
-	built.init(plane,200,enemyPlanes);
-	enemyPlanes.init();
+	built.init(plane,100,enemyPlanes);
+	enemyPlanes.init(1000,plane);
 
 
 

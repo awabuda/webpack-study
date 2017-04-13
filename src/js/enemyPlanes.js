@@ -13,10 +13,12 @@ enemyPlanes.prototype = {
  maxHeight:256,
  middleWidth:70,
  maxWidth:165,
- init : function (s) {
+ init : function (s,obj) {
    this.s = s || 1000;
+   this.obj = obj;
    this.destoryAll();
    this.settime();
+
 
  },
  settime :function () {
@@ -24,6 +26,9 @@ enemyPlanes.prototype = {
    that.timer = setInterval(function(){
      that.appendDom()
    },that.s)
+   that.time2 = setInterval(function (){
+     that.destoryPlain();
+   },20);
  },
  appendDom : function (){
    var n =[1,2,1,2,1,2,1,2,1,2,3,2,3,1,2,2,2,1,2,2];
@@ -59,8 +64,14 @@ enemyPlanes.prototype = {
     })
    })
  },
- destory : function () {
-
+ destoryPlain : function () {//飞机碰撞；
+   var that = this;
+    [].forEach.call($('.enemyplanes'),function (item){
+      console.log(1)
+      if ((parseInt($(item).css('top'))+ $(item).height() +  $('.float').height() +that.obj.bottom>= $('.wrap').height()) && that.obj.left > parseInt($(item).css('left'))-$('.float').width() && that.obj.left < parseInt($(item).css('left'))+ $('.float').width()){
+        //alert('gameover')
+      }
+    })
  },
  destorySpecail : function () {//这个方法是特殊炸弹效果；
 

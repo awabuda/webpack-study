@@ -26,7 +26,7 @@ built.prototype = {
   init : function (obj,speed,enemyPlanes) {
     this.obj = obj;
     this.enemyPlanes = enemyPlanes || {};
-    this.speed = speed || 300;
+    this.speed = speed || 100;
     this.destoryAll();
     this.settime();
 
@@ -127,7 +127,7 @@ built.prototype = {
               default:
 
             }
-            if (that.enemyPlanes.enemy[enemyId].hp <= -1){
+            if (that.enemyPlanes.enemy[enemyId].hp < 0){
               $(dj).remove();
             }
             that.scale++;
