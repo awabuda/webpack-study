@@ -63,6 +63,7 @@ module.exports = {
 
 
 	],//webpack下的监听变化；
+	watch: true,
 	devServer: {//貌似启动webpack-dev-server 服务;非入口文件的改变则不会被监听到，需要手动进行刷新。
 	    contentBase: "./",//本地服务器所加载的页面所在的目录
 	    historyApiFallback: true,//不跳转
