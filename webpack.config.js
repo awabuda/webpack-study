@@ -3,11 +3,13 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');//样式处理
 var	autoprefixer = require('autoprefixer');	//样式自动兼容拓写
 var CleanPlugin = require('clean-webpack-plugin');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');//自动打开浏览器插件
+var CopyPlugin = require('copy-webpack-plugin')
 //var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
 module.exports = {
   	entry: {
-  		mainindex:'./src/js/index.js' //编译入口
+  		planeIndex:'./src/js/plane/index.js', //编译入口
+  		cmbIndex:'./src/js/cmb/cmb.js'
   	},
 	output: {
 	    path: path.resolve(__dirname,'dist/'),//编译后的路径
@@ -21,19 +23,28 @@ module.exports = {
         },
 		    {test:/\.scss$/, loader: 'css-loader!sass-loader'},
 		    {test: /\.css$/, loader:  ExtractTextPlugin.extract({loader: 'css-loader!postcss-loader?importLoaders=1'}) },
-
-		   	{ test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=1&name=/img/[name].[ext]'}
+		   	{ test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=1&name=/image/[name].[ext]'}
 
 	    ]
 	},
 	plugins:[//webpack强大的插件
-		new CleanPlugin('./dist/**/'),
+		  new CleanPlugin(['dist/'],{
+
+          "root": path.resolve(__dirname,''),
+           //一个根的绝对路径.
+          "verbose": true,//
+           //将log写到 console.
+          "dry": false,//
+           //不要删除任何东西，主要用于测试.
+          "exclude": ['image']//排除不删除的目录，主要用于避免删除公用的文件
+
+      }),
 	  	new webpack.BannerPlugin("this is build by cpt"),//在脚本中拆入一些注释
 	  	new webpack.ProvidePlugin({    //加载jq将jq作为全局
             $: 'jquery',
             jquery: 'jquery'
         }),
-        new webpack.LoaderOptionsPlugin({ //这种写法是webapck2的方法；样式兼容自动添加；
+      new webpack.LoaderOptionsPlugin({ //这种写法是webapck2的方法；样式兼容自动添加；
 		    debug: false,
 		    options: {
 		        postcss: [
@@ -41,14 +52,17 @@ module.exports = {
 		        ],
 	   		 },
 			}),
-        new ExtractTextPlugin({//这一步终于把css提取出来了；如果不提取可以把这个插件干掉；然后上面的css 模块可以把style-loader 加上；
+      new ExtractTextPlugin({//这一步终于把css提取出来了；如果不提取可以把这个插件干掉；然后上面的css 模块可以把style-loader 加上；
 		      filename: "./css/[name].css",
 		      allChunks: true,
-		    })
+		  }),
+      new CopyPlugin([{
+        from: path.resolve(__dirname,'./src/img/'),
+        to: path.resolve(__dirname,'./dist/image')
+      }])
 
-	],
 
-	watch: true,//webpack下的监听变化；
+	],//webpack下的监听变化；
 	devServer: {//貌似启动webpack-dev-server 服务;非入口文件的改变则不会被监听到，需要手动进行刷新。
 	    contentBase: "./",//本地服务器所加载的页面所在的目录
 	    historyApiFallback: true,//不跳转
